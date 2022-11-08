@@ -1,0 +1,9 @@
+スタートアッププロジェクトに指定すれば複数使える
+
+#include <stdio.h>
+
+int main(void) {
+	
+
+	return 0;
+}
