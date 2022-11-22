@@ -4,7 +4,7 @@
 using namespace std;	//これでstd::を省略可能
 
 int main(void) {
-
+	
 	//コンテナ名
 	list<const char*> yamanotesenn =
 	{
