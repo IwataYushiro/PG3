@@ -24,9 +24,13 @@ int main(void) {
 
 		scanf_s("%d", &val);
 
+		printf("\n");
+
 		Create(&head, val);
 
 		Index(&head);
+
+		printf("\n");
 	}
 
 	return 0;
@@ -54,7 +58,7 @@ void Index(CELL* startcell)
 	while (startcell->next != nullptr)
 	{
 		startcell = startcell->next;
-		printf("%d\n", startcell->val);
+		printf("%d ,", startcell->val);
 		
 	}
 	printf("\n");
