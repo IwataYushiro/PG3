@@ -1,29 +1,30 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef struct cell {
 
-	char strBef[11];
+	int val;
 	struct cell* next;
 
 }CELL;
 
-void Create(CELL *endcell,const char *buf);
+void Create(CELL *endcell,int buf);
 
 void Index(CELL* startcell);
 
 int main(void) {
 
-	char strAft[11];
+	int val;
 	
 	CELL head;
 	head.next = nullptr;
 	while (true)
 	{
-		scanf_s("%s", strAft, 11);
+		printf("D‚«‚È”Žš‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n“ü—Í‚µ‚½’l@");
 
-		Create(&head, strAft);
+		scanf_s("%d", &val);
+
+		Create(&head, val);
 
 		Index(&head);
 	}
@@ -31,14 +32,13 @@ int main(void) {
 	return 0;
 }
 
-void Create(CELL* endcell, const char* buf)
+void Create(CELL* endcell, int buf)
 {
 	CELL *newCell;
 
 	newCell = (CELL*)malloc(sizeof(CELL));
 
-	strcpy_s(newCell->strBef, 11, buf);
-
+	newCell->val = buf;
 	newCell->next = nullptr;
 
 	while (endcell->next != nullptr)
@@ -46,14 +46,16 @@ void Create(CELL* endcell, const char* buf)
 		endcell = endcell->next;
 	}
 
-	endcell = newCell;
+	endcell->next = newCell;
 }
 
 void Index(CELL* startcell)
 {
-	while (startcell->next!=nullptr)
+	while (startcell->next != nullptr)
 	{
 		startcell = startcell->next;
-		printf("%s\n", startcell->strBef);
+		printf("%d\n", startcell->val);
+		
 	}
+	printf("\n");
 }
