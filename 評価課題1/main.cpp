@@ -1,67 +1,59 @@
-#include <list>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-using namespace std;	//これでstd::を省略可能
+typedef struct cell {
+
+	char strBef[11];
+	struct cell* next;
+
+}CELL;
+
+void Create(CELL *endcell,const char *buf);
+
+void Index(CELL* startcell);
 
 int main(void) {
 
-	//コンテナ名
-	list<const char*> yamanotesenn =
+	char strAft[11];
+	
+	CELL head;
+	head.next = nullptr;
+	while (true)
 	{
-		"Tokyo",
-		"Kanda",
-		"Akihabara",
-		"Okachimachi",
-		"Ueno",
-		"Uguisudani",
-		"Nippori",
-		"Tabata"
-	};
+		scanf_s("%s", strAft, 11);
 
-	//1970年
-	printf("-1970-\n");
-	for (auto itr = yamanotesenn.begin();
-		itr != yamanotesenn.end(); itr++)
-	{
-		printf("%s\n", *itr);
+		Create(&head, strAft);
+
+		Index(&head);
 	}
-	//改行
-	printf("\n");
-
-	//2019年
-	//1971年、田端の前に、日暮里の後に西日暮里が追加
-	printf("-2019-\n");
-	for (auto itr = yamanotesenn.begin();
-		itr != yamanotesenn.end(); ++itr)
-	{
-		if (strcmp(*itr, "Tabata") == 0)
-		{
-			itr = yamanotesenn.insert(itr, "Nishi-Nippori");
-			itr++;
-			//brackでも可
-		}
-	}
-	for (auto itr = yamanotesenn.begin();
-		itr != yamanotesenn.end(); itr++)
-	{
-		printf("%s\n", *itr);
-	}
-	//改行
-	printf("\n");
-
-	//2022年
-	printf("-2022-\n");
-	//2020年に高輪ゲートウェイが追加される
-	yamanotesenn.push_back("Takanawa-Gateway");
-
-	for (auto itr = yamanotesenn.begin();
-		itr != yamanotesenn.end(); itr++)
-	{
-		printf("%s\n", *itr);
-	}
-
-	//改行
-	printf("\n");
 
 	return 0;
+}
+
+void Create(CELL* endcell, const char* buf)
+{
+	CELL *newCell;
+
+	newCell = (CELL*)malloc(sizeof(CELL));
+
+	strcpy_s(newCell->strBef, 11, buf);
+
+	newCell->next = nullptr;
+
+	while (endcell->next != nullptr)
+	{
+		endcell = endcell->next;
+	}
+
+	endcell = newCell;
+}
+
+void Index(CELL* startcell)
+{
+	while (startcell->next!=nullptr)
+	{
+		startcell = startcell->next;
+		printf("%s\n", startcell->strBef);
+	}
 }
