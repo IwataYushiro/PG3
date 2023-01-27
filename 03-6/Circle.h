@@ -4,9 +4,9 @@
 class Circle :public IShape
 {
 public:
-	void size()override;
+	void size();
 
-	void draw()override;
+	void draw();
 
 private:
 	const float pi = 3.14f;

@@ -3,9 +3,9 @@
 class Rectangle:public IShape 
 {
 public:
-	void size()override;
+	void size();
 
-	void draw()override;
+	void draw();
 
 private:
 	int x = 3;
