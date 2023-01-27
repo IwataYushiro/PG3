@@ -1,0 +1,127 @@
+#include "SceneManager.h"
+#include <stdio.h>
+
+SceneManager::SceneManager()
+{
+}
+
+SceneManager::~SceneManager()
+{
+}
+
+SceneManager* SceneManager::GetInstance()
+{
+	static SceneManager instance;
+
+	return &instance;
+}
+
+void SceneManager::SceneChange(int sceneNo)
+{
+	switch (sceneNo)
+	{
+	case 0:
+		printf("title\n");
+		break;
+	case 1:
+		printf("new game\n");
+		break;
+	case 2:
+		printf("game play\n");
+		break;
+	case 3:
+		printf("game clear\n");
+		break;
+	
+	}
+}
+
+#pragma once
+
+class SceneManager final
+{
+private:
+	SceneManager();
+	~SceneManager();
+
+private:
+
+public:
+	static SceneManager* GetInstance();
+
+	void SceneChange(int sceneNo);
+
+};
+
+#include <stdio.h>
+#include "SceneManager.h"
+
+int main(void) {
+
+	enum Scene
+	{
+		title,
+		newgame,
+		gameplay,
+		gameclear,
+	};
+	int scene = title;
+
+	//インスタンスを取得
+	SceneManager* sm = SceneManager::GetInstance();
+	//タイマー
+	int time = 200;
+
+	while (true)
+	{
+		switch (scene)
+		{
+		case title:
+			sm->SceneChange(title);
+
+			if (time == 0)
+			{
+				time = 200;
+				scene = newgame;
+				break;
+			}
+			break;
+		case newgame:
+			sm->SceneChange(newgame);
+
+			if (time == 0)
+			{
+				time = 200;
+				scene = gameplay;
+				break;
+			}
+			break;
+		case gameplay:
+			sm->SceneChange(gameplay);
+
+			if (time == 0)
+			{
+				time = 200;
+				scene = gameclear;
+				break;
+			}
+			break;
+		case gameclear:
+			sm->SceneChange(gameclear);
+
+			if (time == 0)
+			{
+				time = 200;
+				scene = title;
+				break;
+			}
+			break;
+		
+		}
+
+		printf("time=%d", time);
+		time--;
+	}
+
+	return 0;
+}
